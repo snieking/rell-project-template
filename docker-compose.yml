@@ -1,0 +1,29 @@
+version: '3.3'
+
+services:
+  postgres:
+    image: postgres:14.1-alpine
+    container_name: postgres
+    restart: always
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_DB: postchain
+      POSTGRES_USER: postchain
+      POSTGRES_PASSWORD: postchain
+
+  blockchain:
+    image: registry.gitlab.com/chromaway/postchain-distribution/chromaway/postchain-test-dapp:3.5.0
+    container_name: blockchain
+    command:
+      - ${COMMAND}
+    ports:
+      - '7740:7740'
+    depends_on:
+      - postgres
+    volumes:
+      - ./rell:/opt/chromaway/rell
+    environment:
+      POSTCHAIN_DB_URL: jdbc:postgresql://postgres/postchain
+      CHAIN_CONF: /opt/chromaway/rell/config/local/run.xml
+      NODE_CONF: /opt/chromaway/rell/config/local/node-config.properties

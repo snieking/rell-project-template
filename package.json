@@ -1,0 +1,20 @@
+{
+  "name": "rell-project-template",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "docker compose down && COMMAND=run-node-auto docker compose up blockchain -d",
+    "stop": "docker compose down"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snieking/rell-project-template.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/snieking/rell-project-template/issues"
+  },
+  "homepage": "https://github.com/snieking/rell-project-template#readme"
+}
